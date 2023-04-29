@@ -4,8 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView,GenericAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from rest_framework import viewsets
+from rest_framework import status,viewsets
 from django.shortcuts import get_object_or_404
 from .models import Category,Country,City,Brand,Advert
 from .serializers import (
@@ -84,10 +83,6 @@ class MakeAdvert(CreateAPIView):
 
         if serializer.is_valid():
             valided = serializer.validated_data
-            # valided["user"] = request.user
-            # TODO
-            # make the user and pass the phone_number to the advert data !
-            # valided["phone_number"] = request.user.phone_number
             serializer.create(valided)
             return Response({'ok':'make it as avatar ;)'})
 
